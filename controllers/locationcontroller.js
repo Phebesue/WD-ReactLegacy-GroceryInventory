@@ -50,7 +50,7 @@ router.get("/all", (req, res) => {
 
 // -----  Update location  -----
 // PUT:   http://localhost:3020/location/:id
-router.put("/update/:id", validateSession, (req, res) => {
+router.put("/:id", validateSession, (req, res) => {
   const updateLocation = {
     locationName: req.body.location.locationName,
     room: req.body.location.room,
@@ -62,18 +62,16 @@ router.put("/update/:id", validateSession, (req, res) => {
   const query = { where: { id: req.params.id } };
   //   const query = { where: { id: req.params.id, userId: req.user.id} };
 
-  Location
-    .update(updateLocation, query)
-    .then((location) => res.status(200).json(location))
+  Location.update(updateLocation, query)
+    .then((location) => res.status(200).json({message: "Location Updated"}))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
 // -----  Delete a location Entry  -----
 // DEL:   http://localhost:3020/location/:id
 router.delete("/:id", (req, res) => {
-  Location
-    .destroy({ where: { id: req.params.id } })
-    .then((location) => res.status(200).json(location))
+  Location.destroy({ where: { id: req.params.id } })
+    .then((location) => res.status(200).json({message: "Location Deleted"}))
     .catch((err) => res.json(req.errors));
 });
 
