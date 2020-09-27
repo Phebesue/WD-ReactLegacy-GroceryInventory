@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     storageContainer: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     quantity: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -25,11 +25,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     locationId: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     vendorId: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
     },
     groceryNotes: {
       type: DataTypes.STRING,
