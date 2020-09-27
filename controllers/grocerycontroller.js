@@ -1,7 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let validateSession = require("../middleware/validate-session");
-const grocery = require("../db").import("../models/grocery");
+const Grocery = require("../db").import("../models/grocery");
 
 // Endpoints
 // POST:  http://localhost:3020/grocery/create
@@ -14,18 +14,19 @@ const grocery = require("../db").import("../models/grocery");
 // POST:  http://localhost:3020/grocery/create
 router.post("/create", validateSession, (req, res) => {
   const groceryEntry = {
+    upc: req.body.grocery.upc,
     groceryName: req.body.grocery.groceryName,
     storageType: req.body.grocery.storageType,
     storageContainer: req.body.grocery.storageContainer,
     quantity: req.body.grocery.quantity,
     unitOfMeasure: req.body.grocery.unitOfMeasure,
-    OnHand: req.body.grocery.OnHand,
+    onHand: req.body.grocery.onHand,
     locationId: req.body.grocery.locationId,
     vendorId: req.body.grocery.vendorId,
     groceryNotes: req.body.grocery.groceryNotes,
     userId: req.user.id,
   };
-  grocery
+  Grocery
     .create(groceryEntry)
     .then((grocery) => res.status(200).json(grocery))
     .catch((err) => res.status(500).json({ error: err }));
@@ -45,23 +46,23 @@ router.post("/create", validateSession, (req, res) => {
 
 // -----  Get All grocery -----
 // GET:   http://localhost:3020/grocery/all
-router.get("/all", (req, res) => {
-  grocery
-    .findAll()
+router.get("/all", validateSession, (req, res) => {
+  Grocery.findAll()
     .then((grocery) => res.status(200).json(grocery))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
 // -----  Update grocery  -----
 // PUT:   http://localhost:3020/grocery/:id
-router.put("/update/:id", validateSession, (req, res) => {
+router.put("/:id", validateSession, (req, res) => {
   const updateGrocery = {
+    upc: req.body.grocery.upc,
     groceryName: req.body.grocery.groceryName,
     storageType: req.body.grocery.storageType,
     storageContainer: req.body.grocery.storageContainer,
     quantity: req.body.grocery.quantity,
     unitOfMeasure: req.body.grocery.unitOfMeasure,
-    OnHand: req.body.grocery.OnHand,
+    onHand: req.body.grocery.onHand,
     locationId: req.body.grocery.locationId,
     vendorId: req.body.grocery.vendorId,
     groceryNotes: req.body.grocery.groceryNotes,
@@ -70,18 +71,18 @@ router.put("/update/:id", validateSession, (req, res) => {
   const query = { where: { id: req.params.id } };
   //   const query = { where: { id: req.params.id, userId: req.user.id} };
 
-  grocery
+  Grocery
     .update(updateGrocery, query)
-    .then((grocery) => res.status(200).json(grocery))
+    .then((grocery) => res.status(200).json({message: "Grocery Item Updated"}))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
 // -----  Delete a grocery Entry  -----
 // DEL:   http://localhost:3020/grocery/:id
-router.delete("/:id", validateSession,(req, res) => {
-  grocery
+router.delete("/:id", validateSession, (req, res) => {
+  Grocery
     .destroy({ where: { id: req.params.id } })
-    .then((grocery) => res.status(200).json(grocery))
+    .then((grocery) => res.status(200).json({message: "Grocery Item Deleted"}))
     .catch((err) => res.json(req.errors));
 });
 

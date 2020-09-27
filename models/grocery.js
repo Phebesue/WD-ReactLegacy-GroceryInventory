@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const Grocery = sequelize.define("grocery", {
+    upc: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     groceryName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -20,16 +24,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    OnHand: {
+    onHand: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     locationId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     vendorId: {
       type: DataTypes.INTEGER,
+      allowNull: true,
     },
     groceryNotes: {
       type: DataTypes.STRING,
