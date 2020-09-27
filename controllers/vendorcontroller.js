@@ -48,7 +48,7 @@ router.get("/all",validateSession,(req, res) => {
     .findAll()
     .then((vendor) => res.status(200).json(vendor))
     .catch((err) => res.status(500).json({ error: err }));
-});
+    });
 
 // -----  Update vendor  -----
 // PUT:   http://localhost:3020/vendor/:id
