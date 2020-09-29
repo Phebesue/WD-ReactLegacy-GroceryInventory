@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     storageType: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM("refrigerated", "dry", "frozen"),
       allowNull: false,
     },
     storageContainer: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM("box", "jar", "bag", "carton", "none"),
       allowNull: true,
     },
     quantity: {
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     unitOfMeasure: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM("each", "grams", "kilograms", "ounces", "pounds", "milliliter", "liter", "fluid ounce", "gallon", "none" ),
       allowNull: false,
     },
     onHand: {
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     groceryNotes: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true,
     },
   });

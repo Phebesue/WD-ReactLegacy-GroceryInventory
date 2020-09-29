@@ -21,6 +21,7 @@ router.post("/signup", (req, res) => {
 	userName: req.body.userName,
     // password: req.body.password
     password: bcrypt.hashSync(req.body.password, 11),
+    admin: req.body.admin,
   })
     .then((user) => {
       let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
@@ -91,14 +92,17 @@ router.put("/", validateSession, (req, res) => {
 // -----  Delete User  -----
 // DEL :  http://localhost:3020/user/
 router.delete("/", validateSession, function (req, res) {
+  if (!req.err && req.user.admin){
   let userid = req.user.id;
-
   const query = {where: {id: userid}};
 
   User.destroy(query)
   .then(() => res.status(200).json({ message: "User Deleted"}))
   .catch((err) => res.status(500).json({error:err}));
-});
+}else{ 
+  return res.status(500).send({ message: "Not Authorized"});
+}}
+)
 
 // -----  Get User  -----
 // GET :  http://localhost:3020/user/
@@ -111,9 +115,13 @@ router.get("/", validateSession, (req, res) => {
   // -----  Get All Users -----
 // GET:   http://localhost:3020/user/all
 router.get("/all",validateSession,(req, res) => {
+  if (!req.err && req.user.admin){
     User.findAll()
-      .then((user) => res.status(200).json(user))
-      .catch((err) => res.status(500).json({ error: err }));
-  });
+    .then((user) => res.status(200).json(user))
+    .catch((err) => res.status(500).json({ error: err }));
+  }else{ 
+  return res.status(500).send({ message: "Not Authorized"});
+}}
+)
 
 module.exports = router;
