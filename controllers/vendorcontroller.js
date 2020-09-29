@@ -13,6 +13,7 @@ const Vendor = require("../db").import("../models/vendor");
 // -----  vendor Create  -----
 // POST:  http://localhost:3020/vendor/create
 router.post("/create", validateSession, (req, res) => {
+  if (!req.err && req.user.admin){
   const vendorEntry = {
     vendorName: req.body.vendor.vendorName,
     website: req.body.vendor.website,
@@ -27,7 +28,11 @@ router.post("/create", validateSession, (req, res) => {
     .create(vendorEntry)
     .then((vendor) => res.status(200).json(vendor))
     .catch((err) => res.status(500).json({ error: err }));
-});
+} else{
+  return res.status(500).send({ message: "Not Authorized"});
+}}
+)
+
 // Consider search by name
 // -----Get My vendor  -----
 GET:   http://localhost:3020/vendor/
@@ -53,6 +58,7 @@ router.get("/all",validateSession,(req, res) => {
 // -----  Update vendor  -----
 // PUT:   http://localhost:3020/vendor/:id
 router.put("/:id", validateSession, (req, res) => {
+  if (!req.err && req.user.admin){
   const updateVendor = {
     vendorName: req.body.vendor.vendorName,
     website: req.body.vendor.website,
@@ -70,15 +76,24 @@ router.put("/:id", validateSession, (req, res) => {
     .update(updateVendor, query)
     .then((vendor) => res.status(200).json({message: "Vendor Updated"}))
     .catch((err) => res.status(500).json({ error: err }));
+}else {
+  return res.status(500).send({ message: "Not Authorized"});
+
+}
 });
 
 // -----  Delete a vendor Entry  -----
 // DEL:   http://localhost:3020/vendor/:id
 router.delete("/:id", validateSession,(req, res) => {
+  if (!req.err && req.user.admin){
   Vendor
     .destroy({ where: { id: req.params.id } })
     .then((vendor) => res.status(200).json({message: "Vendor Removed"} ))
     .catch((err) => res.json(req.errors));
-});
+    
+  }else {
+    return res.status(500).send({ message: "Not Authorized"});
+}}
+)
 
 module.exports = router;

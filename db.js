@@ -15,35 +15,34 @@ sequelize.authenticate().then(
 );
 
 User = sequelize.import("./models/user");
-Locations = sequelize.import("./models/location");
-Vendors = sequelize.import("./models/vendor");
-Groceries = sequelize.import("./models/grocery");
+LocationX = sequelize.import("./models/location");
+Vendor = sequelize.import("./models/vendor");
+Grocery = sequelize.import("./models/grocery");
 
-// User.hasMany(Groceries);
-
-// User belongs to Groceries
-// Groceries.belongsTo(User);
-
-// User.hasMany(Locations);
-// Locations.belongsTo(User);
-// User.hasMany(Vendors);
-// Vendors.belongsTo(User);
-
-// Groceries.hasMany(Locations);
-// Locations.belongsToMany(Groceries);
-
-// Locations.hasMany(Groceries);
-// Groceries.belongsTo(Locations);
-
-// User.hasMany(Vendors);
-// Vendors.belongsTo(User);
+User.hasMany(Grocery);
+Grocery.belongsTo(User);
 
 
-// Groceries.hasMany(Vendors);
-// Vendors.belongsTo(Groceries)
 
-// User.hasOne(UserInfo);
-// UserInfo.belongsTo(User);
+// User.hasMany(Location);
+// Location.belongsTo(User);
+// User.hasMany(Vendor);
+// Vendor.belongsTo(User);
+
+// Grocery.hasMany(Location);
+// Location.belongsTo(Grocery);
+
+LocationX.hasMany(Grocery);
+Grocery.belongsTo(LocationX);
+
+// User.hasMany(Vendor);
+// Vendor.belongsTo(User);
+
+
+Vendor.hasMany(Grocery);
+Grocery.belongsTo(Vendor)
+
+
 // UserInfo.belongsTo(User,{as: "Owner"});
 
 module.exports = sequelize;

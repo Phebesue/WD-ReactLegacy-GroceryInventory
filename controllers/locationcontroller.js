@@ -13,6 +13,7 @@ const Location = require("../db").import("../models/location");
 // -----  location Create  -----
 // POST:  http://localhost:3020/location/create
 router.post("/create", validateSession, (req, res) => {
+  if (!req.err && req.user.admin){
   const locationEntry = {
     locationName: req.body.location.locationName,
     room: req.body.location.room,
@@ -25,6 +26,10 @@ router.post("/create", validateSession, (req, res) => {
     .create(locationEntry)
     .then((location) => res.status(200).json(location))
     .catch((err) => res.status(500).json({ error: err }));
+  }else{
+  return res.status(500).send({ message: "Not Authorized"});
+
+  }
 });
 // Consider search by name, room type, etc?
 // -----Get My location  -----
@@ -51,6 +56,7 @@ router.get("/all", (req, res) => {
 // -----  Update location  -----
 // PUT:   http://localhost:3020/location/:id
 router.put("/:id", validateSession, (req, res) => {
+  if (!req.err && req.user.admin){
   const updateLocation = {
     locationName: req.body.location.locationName,
     room: req.body.location.room,
@@ -63,16 +69,22 @@ router.put("/:id", validateSession, (req, res) => {
   //   const query = { where: { id: req.params.id, userId: req.user.id} };
 
   Location.update(updateLocation, query)
-    .then((location) => res.status(200).json({message: "Location Updated"}))
+    .then((location) => res.status(200).json({message: "Location Updated", location}))
     .catch((err) => res.status(500).json({ error: err }));
-});
+  } else{
+    return res.status(500).send({ message: "Not Authorized"});
+}})
 
 // -----  Delete a location Entry  -----
 // DEL:   http://localhost:3020/location/:id
-router.delete("/:id", (req, res) => {
+router.delete("/:id",validateSession, (req, res) => {
+  if (!req.err && req.user.admin){
   Location.destroy({ where: { id: req.params.id } })
     .then((location) => res.status(200).json({message: "Location Deleted"}))
-    .catch((err) => res.json(req.errors));
-});
+    .catch((err) => res.json(req.err));
+  } else{
+    return res.status(500).send({ message: "Not Authorized"});
+}}
+)
 
 module.exports = router;
