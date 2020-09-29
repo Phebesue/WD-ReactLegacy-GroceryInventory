@@ -34,15 +34,17 @@ router.post("/create", validateSession, (req, res) => {
 // Consider search by name, storageType quantity, etc?
 // -----Get My grocery  -----
 // GET:   http://localhost:3020/grocery/
-// router.get("/", validateSession, (req, res) => {
-//   let userid = req.user.id;
-//   grocery
-//     .findAll({
-//       where: { userId: userid },
-//     })
-//     .then((grocery) => res.status(200).json(grocery))
-//     .catch((err) => res.status(500).json({ error: err }));
-// });
+router.get("/:id", validateSession, (req, res) => {
+  // let userid = req.user.id;
+  Grocery
+    // .findAll({
+      .findOne({
+        where: { id: req.params.id },include: "vendors"
+      })
+    // })
+    .then((grocery) => res.status(200).json(grocery))
+    .catch((err) => res.status(500).json({ error: err }));
+});
 
 // -----  Get All grocery -----
 // GET:   http://localhost:3020/grocery/all
@@ -79,11 +81,14 @@ router.put("/:id", validateSession, (req, res) => {
 
 // -----  Delete a grocery Entry  -----
 // DEL:   http://localhost:3020/grocery/:id
-router.delete("/:id", validateSession, (req, res) => {
+router.delete("/:id", validateSession, (req, res) => {  if (!req.err && req.user.admin){
   Grocery
     .destroy({ where: { id: req.params.id } })
     .then((grocery) => res.status(200).json({message: "Grocery Item Deleted"}))
     .catch((err) => res.json(req.errors));
-});
+  }else {
+    return res.status(500).send({ message: "Not Authorized"});
+}}
+)
 
 module.exports = router;

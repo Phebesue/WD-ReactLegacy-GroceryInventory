@@ -28,14 +28,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    locationId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    vendorId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
+    // locationId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    // },
+    // vendorId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    // },
     groceryNotes: {
       type: DataTypes.TEXT,
       allowNull: true,

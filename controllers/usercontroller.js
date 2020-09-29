@@ -125,3 +125,17 @@ router.get("/all",validateSession,(req, res) => {
 )
 
 module.exports = router;
+
+// Admin
+/*
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjAxNDEyNjg4LCJleHAiOjE2MDE0OTkwODh9.Xl8GVCet67c4UfrAu1JRc6i3xn9Ey3OXuQ5Xh9Pi4FI
+*/
+// User
+/*
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjAxNDEyNjE1LCJleHAiOjE2MDE0OTkwMTV9.jXCRh8tw9bO4Lsl5d90ZA7QHQsFU7OSY_nr0Z9bXX8
+*/
+
+// Null
+/*
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjAxNDEyNjYzLCJleHAiOjE2MDE0OTkwNjN9.3o4IDW5ti4nnBoANoGq7eLbW9ocpFYaafo-t4NdX7IU
+*/
