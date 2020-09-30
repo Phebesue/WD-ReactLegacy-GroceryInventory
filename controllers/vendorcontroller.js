@@ -12,7 +12,7 @@ const Vendor = require("../db").import("../models/vendor");
 
 // -----  vendor Create  -----
 // POST:  http://localhost:3020/vendor/create
-router.post("/create", validateSession, (req, res) => {
+router.post("/create", (req, res) => {
   if (!req.err && req.user.admin){
   const vendorEntry = {
     vendorName: req.body.vendor.vendorName,
@@ -36,7 +36,7 @@ router.post("/create", validateSession, (req, res) => {
 // Consider search by name
 // -----Get My vendor  -----
 GET:   http://localhost:3020/vendor/
-router.get("/", validateSession, (req, res) => {
+router.get("/", (req, res) => {
   let userid = req.user.id;
   Vendor
     .findAll({
@@ -57,7 +57,7 @@ router.get("/all",validateSession,(req, res) => {
 
 // -----  Update vendor  -----
 // PUT:   http://localhost:3020/vendor/:id
-router.put("/:id", validateSession, (req, res) => {
+router.put("/:id", (req, res) => {
   if (!req.err && req.user.admin){
   const updateVendor = {
     vendorName: req.body.vendor.vendorName,
@@ -84,7 +84,7 @@ router.put("/:id", validateSession, (req, res) => {
 
 // -----  Delete a vendor Entry  -----
 // DEL:   http://localhost:3020/vendor/:id
-router.delete("/:id", validateSession,(req, res) => {
+router.delete("/:id",(req, res) => {
   if (!req.err && req.user.admin){
   Vendor
     .destroy({ where: { id: req.params.id } })
