@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     onHand: {
       type: DataTypes.INTEGER,
-      defaultValue: 1,
+      // defaultValue: 1,
       allowNull: false,
     },
     // locationId: {
