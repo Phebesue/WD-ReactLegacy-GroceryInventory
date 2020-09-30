@@ -8,8 +8,8 @@ const Vendor = require("../db").import("../models/vendor");
 
 // Endpoints
 // POST:  http://localhost:3020/grocery/create
-// GET:   http://localhost:3020/grocery/:id
 // GET:   http://localhost:3020/grocery/all
+// GET:   http://localhost:3020/grocery/:id
 // PUT:   http://localhost:3020/grocery/:id
 // DEL:   http://localhost:3020/grocery/:id
 
@@ -41,7 +41,7 @@ router.post("/create", (req, res) => {
 // GET:   http://localhost:3020/grocery/all
 // router.get("/all", validateSession, (req, res) => {
   router.get("/all", (req, res) => {
-    Grocery.findAll(/*{include: ["vendor", "location"]}*/)
+    Grocery.findAll({include: ["vendor", "location"]})
       .then((grocery) => res.status(200).json(grocery))
       .catch((err) => res.status(500).json({ error: err }));
   });
@@ -51,16 +51,13 @@ router.post("/create", (req, res) => {
 // -----Get Grocery by Id  -----
 // GET:   http://localhost:3020/grocery/
 // router.get("/:id", validateSession, (req, res) => {
-router.get("/:id", (req, res) => {
+router.get("/one:id", (req, res) => {
   // let userid = req.user.id;
   Grocery.findOne({where: { id: req.params.id },include: ["vendor", "location"]
-      })
-   
+      })   
     .then((grocery) => res.status(200).json(grocery))
     .catch((err) => res.status(500).json({ error: err }));
 });
-
-
 
 // -----  Update grocery  -----
 // PUT:   http://localhost:3020/grocery/:id
