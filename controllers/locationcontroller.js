@@ -12,7 +12,8 @@ const Location = require("../db").import("../models/location");
 
 // -----  location Create  -----
 // POST:  http://localhost:3020/location/create
-router.post("/create", validateSession, (req, res) => {
+// router.post("/create", validateSession, (req, res) => {
+router.post("/create", (req, res) => {
   if (!req.err && req.user.admin){
   const locationEntry = {
     locationName: req.body.location.locationName,
@@ -55,7 +56,7 @@ router.get("/all", (req, res) => {
 
 // -----  Update location  -----
 // PUT:   http://localhost:3020/location/:id
-router.put("/:id", validateSession, (req, res) => {
+router.put("/:id", (req, res) => {
   if (!req.err && req.user.admin){
   const updateLocation = {
     locationName: req.body.location.locationName,
@@ -77,7 +78,7 @@ router.put("/:id", validateSession, (req, res) => {
 
 // -----  Delete a location Entry  -----
 // DEL:   http://localhost:3020/location/:id
-router.delete("/:id",validateSession, (req, res) => {
+router.delete("/:id", (req, res) => {
   if (!req.err && req.user.admin){
   Location.destroy({ where: { id: req.params.id } })
     .then((location) => res.status(200).json({message: "Location Deleted"}))

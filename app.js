@@ -11,6 +11,8 @@ app.use(require("./middleware/headers"));
 let user = require('./controllers/usercontroller');
 app.use('/user', user);
 
+// -----  Protected Routes  -----
+app.use(require("./middleware/validate-session"));
 let vendor = require('./controllers/vendorcontroller');
 app.use('/vendor', vendor);
 
