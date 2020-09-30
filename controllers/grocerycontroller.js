@@ -35,30 +35,32 @@ router.post("/create", (req, res) => {
     .then((grocery) => res.status(200).json(grocery))
     .catch((err) => res.status(500).json({ error: err }));
 });
-// Consider search by name, storageType quantity, etc?
-// -----Get My grocery  -----
-// GET:   http://localhost:3020/grocery/
-// router.get("/:id", validateSession, (req, res) => {
-router.get("/:id", (req, res) => {
-  // let userid = req.user.id;
-  Grocery
-    // .findAll({
-      .findOne({
-        where: { id: req.params.id },include: "vendors"
-      })
-    // })
-    .then((grocery) => res.status(200).json(grocery))
-    .catch((err) => res.status(500).json({ error: err }));
-});
+
 
 // -----  Get All grocery -----
 // GET:   http://localhost:3020/grocery/all
 // router.get("/all", validateSession, (req, res) => {
-router.get("/all", (req, res) => {
-  Grocery.findAll()
+  router.get("/all", (req, res) => {
+    Grocery.findAll(/*{include: ["vendor", "location"]}*/)
+      .then((grocery) => res.status(200).json(grocery))
+      .catch((err) => res.status(500).json({ error: err }));
+  });
+
+
+// Consider search by name, storageType quantity, etc?
+// -----Get Grocery by Id  -----
+// GET:   http://localhost:3020/grocery/
+// router.get("/:id", validateSession, (req, res) => {
+router.get("/:id", (req, res) => {
+  // let userid = req.user.id;
+  Grocery.findOne({where: { id: req.params.id },include: ["vendor", "location"]
+      })
+   
     .then((grocery) => res.status(200).json(grocery))
     .catch((err) => res.status(500).json({ error: err }));
 });
+
+
 
 // -----  Update grocery  -----
 // PUT:   http://localhost:3020/grocery/:id
