@@ -11,12 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     userName: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{len: [6,16]},
+      validate: { len: [6, 16] },
       unique: true,
     },
     password: {
       type: DataTypes.STRING,
-      // validate:{len: [6,16]},
       allowNull: false,
     },
     admin: {
