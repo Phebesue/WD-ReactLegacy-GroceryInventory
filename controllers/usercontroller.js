@@ -8,6 +8,7 @@ let validateSession = require("../middleware/validate-session");
 // POST:  http://localhost:3020/user/signup
 // POST:  http://localhost:3020/user/login
 // PUT :  http://localhost:3020/user/
+// PUT :  http://localhost:3020/user/admin
 // DEL :  http://localhost:3020/user/
 // GET :  http://localhost:3020/user/
 
