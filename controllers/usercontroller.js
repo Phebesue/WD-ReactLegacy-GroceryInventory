@@ -19,19 +19,19 @@ router.post("/signup", (req, res) => {
   User.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-	  userName: req.body.userName,
+	  username: req.body.username,
     // password: req.body.password
     password: bcrypt.hashSync(req.body.password, 11),
     admin: req.body.admin,
   })
     .then((user) => {
-      let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      let sessionToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
         expiresIn: "1d",
       });
       res.json({
         user: user,
         message: "User Created!",
-        sessionToken: token,
+        sessionToken: sessionToken,
       });
     })
     .catch((err) => res.status(500).json({ error: err }));
@@ -40,12 +40,12 @@ router.post("/signup", (req, res) => {
 // -----  User Login  -----
 // POST:  http://localhost:3020/user/login
 router.post("/login", (req, res) => {
-  User.findOne({ where: { userName: req.body.userName} }).then(
+  User.findOne({ where: { username: req.body.username} }).then(
     (user) => {
       if (user) {
         bcrypt.compare(req.body.password, user.password, (err, matches) => {
           if (matches) {
-            let token = jwt.sign(
+            let sessionToken = jwt.sign(
               { id: user.id},
               process.env.JWT_SECRET,
               {
@@ -55,7 +55,7 @@ router.post("/login", (req, res) => {
             res.status(200).json({
               user: user,
               message: "Successfully logged in!",
-              sessionToken: token,
+              sessionToken: sessionToken,
             });
           } else {
             res.status(502).send({ error: "Bad Gateway" });
@@ -77,7 +77,7 @@ router.put("/admin/:id", validateSession, (req, res) => {
   	const updateUser={
 	  	firstName: req.body.firstName,
 	  	lastName: req.body.lastName,
-      userName: req.body.userName,
+      username: req.body.username,
       admin: req.body.admin,
 	};
 	if (req.body.password != ''){
@@ -99,7 +99,7 @@ router.put("/", validateSession, (req, res) => {
   	const updateUser={
 	  	firstName: req.body.firstName,
 	  	lastName: req.body.lastName,
-	  	userName: req.body.userName,
+	  	username: req.body.username,
 	};
 	if (req.body.password != ''){
 		updateUser.password = bcrypt.hashSync(req.body.password, 11)
@@ -115,7 +115,7 @@ router.put("/", validateSession, (req, res) => {
 // DEL :  http://localhost:3020/user/
 router.delete("/:id", validateSession, function (req, res) {
   if (!req.err && req.user.admin){
-  let userid = req.user.id;
+  // let userid = req.user.id;
   const query = {where: { id: req.params.id }};
 
   User.destroy(query)
