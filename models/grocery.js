@@ -21,12 +21,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     unitOfMeasure: {
-      type: DataTypes.ENUM("each", "grams", "kilograms", "ounces", "pounds", "milliliter", "liter", "fluid ounce", "gallon", "none" ),
+      type: DataTypes.ENUM("each", "grams", "kilograms", "ounces", "pounds", "milliliters", "liters", "fluid ounces", "gallons", "none" ),
       allowNull: false,
     },
     onHand: {
       type: DataTypes.INTEGER,
-      // defaultValue: 1,
+      defaultValue: 1,
       allowNull: false,
     },
     // locationId: {

@@ -143,7 +143,8 @@ router.get("/all",validateSession,(req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
   }else{ 
   return res.status(500).send({ message: "Not Authorized"});
-}}
+}
+}
 )
 
 module.exports = router;
