@@ -125,7 +125,14 @@ router.delete("/:id", validateSession, function (req, res) {
   return res.status(500).send({ message: "Not Authorized"});
 }}
 )
-
+// -----Get One User by Id  -----
+// GET:   http://localhost:3020/user/:id
+router.get("/one/:id", validateSession, (req, res) => {
+  User.findOne({
+      where: {id: req.params.id  }})
+    .then((location) => res.status(200).json(location))
+    .catch((err) => res.status(500).json({ error: err }));
+});
 // -----  Get User  -----
 // GET :  http://localhost:3020/user/
 router.get("/", validateSession, (req, res) => {

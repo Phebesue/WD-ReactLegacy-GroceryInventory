@@ -5,7 +5,7 @@ const Vendor = require("../db").import("../models/vendor");
 
 // Endpoints
 // POST:  http://localhost:3020/vendor/create
-// GET:   http://localhost:3020/vendor/
+// GET:   http://localhost:3020/vendor/one/id
 // GET:   http://localhost:3020/vendor/all
 // PUT:   http://localhost:3020/vendor/:id
 // DEL:   http://localhost:3020/vendor/:id
@@ -34,15 +34,12 @@ router.post("/create", (req, res) => {
 )
 
 // Consider search by name
-// -----Get My vendor  -----
-GET:   http://localhost:3020/vendor/
-router.get("/", (req, res) => {
-  let userid = req.user.id;
-  Vendor
-    .findAll({
-      where: { userId: userid },
-    })
-    .then((vendor) => res.status(200).json(vendor))
+// -----Get Vendor by Id  -----
+// GET:   http://localhost:3020/vendor/one/:id
+router.get("/one/:id", (req, res) => {
+  Vendor.findOne({
+      where: {id: req.params.id  }})
+    .then((location) => res.status(200).json(location))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
@@ -57,23 +54,19 @@ router.get("/all",validateSession,(req, res) => {
 
 // -----  Update vendor  -----
 // PUT:   http://localhost:3020/vendor/:id
-router.put("/:id", (req, res) => {
+router.put("/update/:id", (req, res) => {
   if (!req.err && req.user.admin){
   const updateVendor = {
-    vendorName: req.body.vendor.vendorName,
-    website: req.body.vendor.website,
-    address: req.body.vendor.address,
-    city: req.body.vendor.city,
-    state: req.body.vendor.state,
-    zipcode: req.body.vendor.zipcode,
-    vendorNotes: req.body.vendor.vendorNotes,
+    vendorName: req.body.vendorName,
+    website: req.body.website,
+    address: req.body.address,
+    city: req.body.city,
+    state: req.body.state,
+    zipcode: req.body.zipcode,
+    vendorNotes: req.body.vendorNotes,
   };
-  // Do I need userId here?
-  const query = { where: { id: req.params.id} };
-//   const query = { where: { id: req.params.id, userId: req.user.id} };
-
-  Vendor
-    .update(updateVendor, query)
+    const query = { where: { id: req.params.id} };
+ Vendor.update(updateVendor, query)
     .then((vendor) => res.status(200).json({message: "Vendor Updated"}))
     .catch((err) => res.status(500).json({ error: err }));
 }else {

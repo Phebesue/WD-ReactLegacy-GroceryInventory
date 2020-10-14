@@ -55,11 +55,10 @@ router.get("/all", (req, res) => {
 // Consider search by name, storageType quantity, etc?
 // -----Get Grocery by Id  -----
 // GET:   http://localhost:3020/grocery/
-router.get("/one:id", (req, res) => {
-  // let userid = req.user.id;
+router.get("/one/:id", (req, res) => {
   Grocery.findOne({
     where: { id: req.params.id },
-    include: ["vendor", "location"],
+    // include: ["vendor", "location"],
   })
     .then((grocery) =>
       res.status(200).json({
@@ -72,7 +71,7 @@ router.get("/one:id", (req, res) => {
 
 // -----  Update grocery  -----
 // PUT:   http://localhost:3020/grocery/:id
-router.put("/:id", (req, res) => {
+router.put("/update/:id", (req, res) => {
   const updateGrocery = {
     upc: req.body.grocery.upc,
     groceryName: req.body.grocery.groceryName,
