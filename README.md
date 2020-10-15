@@ -13,7 +13,6 @@ Students must have an understanding of:
 - Connecting server and client
 
 ### Project Challenges:
-#### Project Challenges:
 
 - React - Legacy (Class Components, Lifecycle methods, State Management, etc),
 - At least one React Styling Library (Radium, Material UI, Styled Components, Ant Design),
@@ -29,7 +28,7 @@ Students must have an understanding of:
 - Strong Typing with TypeScript(TypeScript must be used in every client side file),
 - Create and style a README markdown file (README.md),
 
-#### Running the Program
+### Running the Program
 Requirements:
 - Visual Studio Code or other code editor
 - A web browser
