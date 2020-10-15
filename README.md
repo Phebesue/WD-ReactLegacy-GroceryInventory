@@ -56,7 +56,7 @@ The app is divided into an admin and a user side. The user can edit their own ac
 
 [Deployed Server:](https://whats-for-dinner-server2.herokuapp.com/)
 
-[Postman Endpoint Tests](https://teamlink1150.postman.co/collections/11529668-2840341e-bd09-4bab-aa1e-38f04dbda92c?version=latest&workspace=d0df5e57-8c96-4a99-8c39-eafe7e984d48)
+[Postman Endpoint Tests](https://documenter.getpostman.com/view/11529668/TVRq1RDU)
 
 
 
