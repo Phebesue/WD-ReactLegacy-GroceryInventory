@@ -1,34 +1,44 @@
 ﻿# WD-ReactLegacy-TS-GroceryInventoryServer
-### What are the requirements for the application to be considered Minimum Viable Product(MVP)?
-#### Project Challenges:
-Here are the required responsibilities:
+## What are the requirements for the application to be considered Minimum Viable Product(MVP)?
 
-React - Legacy (Class Components, Lifecycle methods, State Management, etc),
+### Prerequisites
+Students must have an understanding of:
 
-At least one React Styling Library (Radium, Material UI, Styled Components, Ant Design),
+- PostgreSql
+- Express
+- Node
+- REST API’s
+- Creating API endpoints
+- React Basics
+- Connecting server and client
 
-Data persistence utilizing PostgreSQL and a NodeJS ORM library (Sequelize),
+### Project Challenges:
 
-Use DB Associations,
+- React - Legacy (Class Components, Lifecycle methods, State Management, etc),
+- At least one React Styling Library (Radium, Material UI, Styled Components, Ant Design),
+- Data persistence utilizing PostgreSQL and a NodeJS ORM library (Sequelize),
+- Use DB Associations,
+- Create full CRUD (Create, Read, Update, Delete) for at least two items in an original application, separate from auth (users),
+- Deployment through Heroku,
+- Other MVP components exclusive to your project,
+- User registration and authentication (REST-ful API)
+- Ordering of items by priority (if it fits the theme),
+- Admin Portal,
+- Use React Class Components, Routing, Guards,
+- Strong Typing with TypeScript(TypeScript must be used in every client side file),
+- Create and style a README markdown file (README.md),
 
-Create full CRUD (Create, Read, Update, Delete) for at least two items in an original application, separate from auth (users),
+### Running the Program
+Requirements:
+- Visual Studio Code or other code editor
+- A web browser
+- Postman or another API testing program
 
-Deployment through Heroku,
-
-Other MVP components exclusive to your project,
-
-User registration and authentication (REST-ful API)
-
-Ordering of items by priority (if it fits the theme),
-
-Admin Portal,
-
-Use React Class Components, Routing, Guards,
-
-Strong Typing with TypeScript(TypeScript must be used in every client side file),
-
-Create and style a README markdown file (README.md),
-
+Instructions:
+- Clone to your local repository and open in code editor.
+- run npm install to update the app dependencies.
+- You will need to create the initial Admin account via Postman (or other API tester)
+- Open Postman to run tests. [Postman Endpoint Tests](https://documenter.getpostman.com/view/11529668/TVRq1RDU) You'll need to Register and get a token to run certain tests.
 
 ## What's for dinner??
 
@@ -56,7 +66,7 @@ The app is divided into an admin and a user side. The user can edit their own ac
 
 [Deployed Server:](https://whats-for-dinner-server2.herokuapp.com/)
 
-[Postman Endpoint Tests](https://teamlink1150.postman.co/collections/11529668-2840341e-bd09-4bab-aa1e-38f04dbda92c?version=latest&workspace=d0df5e57-8c96-4a99-8c39-eafe7e984d48)
+[Postman Endpoint Tests](https://documenter.getpostman.com/view/11529668/TVRq1RDU)
 
 
 
