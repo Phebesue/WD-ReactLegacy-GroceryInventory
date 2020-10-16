@@ -37,8 +37,8 @@ Requirements:
 Instructions:
 - Clone to your local repository and open in code editor.
 - run npm install to update the app dependencies.
-- You will need to create the initial Admin account via Postman (or other API tester)
-- Open Postman to run tests. [Postman Endpoint Tests](https://documenter.getpostman.com/view/11529668/TVRq1RDU) You'll need to Register and get a token to run certain tests.
+- You will need to create the initial Admin account via Postman (or other API tester), or if testing on [deployed version](whats-for-dinner-client.herokuapp.com) userId: user120, password: pass120
+- Open Postman to run tests. [Postman Endpoint Tests](https://documenter.getpostman.com/view/11529668/TVRq1RDU) You'll need to Register and get a token to run most tests.
 
 ## What's for dinner??
 
@@ -69,5 +69,17 @@ The app is divided into an admin and a user side. The user can edit their own ac
 [Postman Endpoint Tests](https://documenter.getpostman.com/view/11529668/TVRq1RDU)
 
 
+### Resources Used
+- [Sequelize Model Basics](https://sequelize.org/master/manual/model-basics.html)
+- [The TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+- [TypeScript Playground](https://www.typescriptlang.org/play?#code/PTAEHUFMBsGMHsC2lQBd5oBYoCoE8AHSAZVgCcBLA1UABWgEM8BzM+AVwDsATAGiwoBnUENANQAd0gAjQRVSQAUCEmYKsTKGYUAbpGF4OY0BoadYKdJMoL+gzAzIoz3UNEiPOofEVKVqAHSKymAAmkYI7NCuqGqcANag8ABmIjQUXrFOKBJMggBcISGgoAC0oACCoASMFmgY7p7ehCTkVOle4jUMdRLYTqCc8LEZzCZmoNJODPHFZZXVtZYYkAAeRJTInDQS8po+rf40gnjbDKv8LqD2jpbYoACqAEoAMsK7sUmxkGSCc+VVQQuaTwVb1UBrDYULY7PagbgUZLJH6QbYmJAECjuMigZEMVDsJzCFLNXxtajBBCcQQ0MwAUVWDEQNUgADVHBQGNJ3KAALygABEAAkYNAMOB4GRogLFFTBPB3AExcwABT0xnM9zsyhc9wASmCKhwDQ8ZC8iElzhB7Bo3zcZmY7AYzEg-Fg0HUiS58D0Ii8AoZTJZggFSRxAvADlQAHJhAA5SASAVBFQAeW+ZF2gldWkgx1QjgUrmkeFATgtOlGWH0KAQiBhwiudokkuiIgMHBx3RYbC43CCJUUJWHoAAPJgAMwAPhe8E4zHyoAA3iNBAEafjIEq58wAL5jqagYBTocjs8vfGLldqNcbhRK-H70fASdToA)
+- [MATERIAL-UI](https://material-ui.com/)
+- [react-material-ui-form-validator](https://www.npmjs.com/package/react-material-ui-form-validator)
+- [TypeError: Cannot read property ‘setState’ of undefined](https://medium.com/@samichkhachkhi/typeerror-cannot-read-property-setstate-of-undefined-27c14e5b3072#:~:text=Sami%20C.,-Follow&text=Whenever%20your%20'this'%20is%20undefined,arrow%20function%20to%20your%20event.&text=you'll%20lose%20your%20'this'%20inside%20the%20function.)
+- [React Events](https://www.w3schools.com/react/react_events.asp)
+- [React event type in Typescript](https://stackoverflow.com/questions/46524815/react-event-type-in-typescript)
+- [React: Expected an assignment or function call and instead saw an expression](https://stackoverflow.com/questions/45573277/react-expected-an-assignment-or-function-call-and-instead-saw-an-expression)
+- [.map is suddenly not a function?!](https://forum.freecodecamp.org/t/map-is-suddenly-not-a-function/303390)
+- ['heroku' does not appear to be a git repository](https://stackoverflow.com/questions/18406721/heroku-does-not-appear-to-be-a-git-repository)
 
 <hr />
